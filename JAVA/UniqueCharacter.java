@@ -10,6 +10,26 @@ import java.util.HashMap;
 
 public class UniqueCharacter {
 	
+	public static char usingBruteForce(String str) {
+		char[] arr = str.toCharArray();
+		int i, j, count;
+		for(i=0;i<arr.length;i++) {
+			count = 1;
+			for(j=0; j<arr.length;j++) {
+				if(arr[i] == arr[j] && i != j) {
+					count++;
+					break; // no need to continue here
+				}
+			}
+			
+			// Unique Character
+			if(count == 1) {
+				return arr[i];
+			}
+		}
+		return ' ';
+	}
+	
 	public static char usingArray(String str) {
 		int aux[] = new int[26];
 		for(int i=0;i<26;i++) {
@@ -63,12 +83,15 @@ public class UniqueCharacter {
 
 		System.out.println(UniqueCharacter.findFirstUniqueChar("teetotal"));
 		System.out.println(UniqueCharacter.usingArray("teetotal"));
+		System.out.println(UniqueCharacter.usingBruteForce("teetotal"));
 		
 		System.out.println(UniqueCharacter.findFirstUniqueChar("abcabcd"));
 		System.out.println(UniqueCharacter.usingArray("abcabcd"));
+		System.out.println(UniqueCharacter.usingBruteForce("abcabcd"));
 		
 		System.out.println(UniqueCharacter.findFirstUniqueChar("aaaaaa"));
 		System.out.println(UniqueCharacter.usingArray("aaaaaa"));
+		System.out.println(UniqueCharacter.usingBruteForce("aaaaaa"));
 	}
 
 }
