@@ -10,6 +10,27 @@ import java.util.HashMap;
 
 public class UniqueCharacter {
 	
+	public static char usingArray(String str) {
+		int aux[] = new int[26];
+		for(int i=0;i<26;i++) {
+			// Initialize to 0
+			aux[i] = 0;
+		}
+		
+		char[] arr = str.toCharArray();
+		for(int i=0;i<arr.length;i++) {
+			aux[(arr[i] - 'a')]++;
+		}
+		
+		for(int i=0;i<arr.length;i++) {
+			if(aux[(arr[i] - 'a')] == 1) {
+				return arr[i];
+			}
+		}
+		
+		return ' ';
+	}
+	
 	public static char usingHash(String str) {
 		HashMap<Character, Integer> h = new HashMap<Character, Integer>();
 		char[] arr = str.toCharArray();
@@ -39,17 +60,15 @@ public class UniqueCharacter {
 	}
 
 	public static void main(String[] args) {
-		String str = new String("teetotal");
-		char c = UniqueCharacter.findFirstUniqueChar(str);
-		System.out.println(c);
+
+		System.out.println(UniqueCharacter.findFirstUniqueChar("teetotal"));
+		System.out.println(UniqueCharacter.usingArray("teetotal"));
 		
-		String str1 = new String("abcabcd");
-		char c1 = UniqueCharacter.findFirstUniqueChar(str1);
-		System.out.println(c1);
+		System.out.println(UniqueCharacter.findFirstUniqueChar("abcabcd"));
+		System.out.println(UniqueCharacter.usingArray("abcabcd"));
 		
-		String str2 = new String("aaaaaa");
-		char c2 = UniqueCharacter.findFirstUniqueChar(str2);
-		System.out.println(c2); // Space will be printed
+		System.out.println(UniqueCharacter.findFirstUniqueChar("aaaaaa"));
+		System.out.println(UniqueCharacter.usingArray("aaaaaa"));
 	}
 
 }
